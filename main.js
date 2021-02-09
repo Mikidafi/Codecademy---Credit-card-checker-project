@@ -52,7 +52,7 @@ const validateCred = (arr) => {
   let oddDigits = reversedArr.filter((element, index) => {
     return index % 2 === 0;
   });
-  // console.log(oddDigits);
+
   // new array with every other element from reversed array
   let doubleDigits = reversedArr.filter((element, index) => {
     return index % 2 !== 0;
@@ -69,29 +69,28 @@ const validateCred = (arr) => {
   let over9Nums = doubled.filter((element) => {
     return element > 9;
   });
+  // substracting 9 if value is greater than 9
   over9Nums = over9Nums.map((element) => {
     return element - 9;
   });
+
   let substractedNums = lessThan9Nums.concat(over9Nums);
-  // console.log(doubled);
-  // console.log(lessThan9Nums);
-  // console.log(over9Nums);
-  // console.log(substractedNums);
+  // finaly adding both arrays together
   let secToLastArr = oddDigits.concat(substractedNums);
   console.log(secToLastArr);
+  // finding total number of an array
   let allTogether = secToLastArr.reduce((a, b) => {
     return a + b;
   });
-  if (allTogether % 10 === 0) {
-    console.log("valid");
-  } else {
-    console.log("invalid");
-  }
   console.log(allTogether);
-
-  // let substractedArr = [];
-  // for (let i = 0; i < doubled.length; i++) {}
-  // console.log(doubled);
+  // checking if sum modulo 10 is 0
+  if (allTogether % 10 === 0) {
+    console.log("Valid");
+    return true;
+  } else {
+    console.log("Invalid");
+    return false;
+  }
 };
 
-validateCred(mystery2);
+validateCred(mystery4);
