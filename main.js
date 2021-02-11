@@ -74,21 +74,26 @@ function validateCredd(arr) {
     return a + b;
   });
   if (sum % 10 === 0) {
-    console.log(`${sum} valid`);
+    // console.log(`${sum} valid`);
     return true;
   } else {
-    console.log(`${sum} invalid`);
+    // console.log(`${sum} invalid`);
     return false;
   }
 }
 
-// validateCredd(invalid2);
-
 // function for finding invalid cards and returns a new array with ivalid cards in it
+
+let invalidCards = [];
 function findInvalidCards(arr) {
   for (let i = 0; i < arr.length; i++) {
     validateCredd(arr[i]);
-    console.log(arr[i]);
+    if (validateCredd(arr[i]) === false) {
+      invalidCards.push(arr[i]);
+    }
   }
+  console.log(invalidCards);
+  return invalidCards;
 }
+
 findInvalidCards(batch);
