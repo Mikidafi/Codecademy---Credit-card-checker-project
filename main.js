@@ -51,7 +51,8 @@ function rightLeft(arr) {
   }
   return reversedArray;
 }
-// function for targeting every other element in array
+// function for targeting every other element in array, doubles it and if number is greater than 9,
+// subtract 9 form it
 function everyOther(arr) {
   arr = rightLeft(arr);
   for (let i = 0; i < arr.length; i++) {
@@ -66,18 +67,28 @@ function everyOther(arr) {
 }
 
 // function that return true for valid card and false for invalid card
+
 function validateCredd(arr) {
   arr = everyOther(arr);
   let sum = arr.reduce((a, b) => {
     return a + b;
   });
   if (sum % 10 === 0) {
-    console.log(`${sum} true`);
+    console.log(`${sum} valid`);
     return true;
   } else {
-    console.log(`${sum} false`);
+    console.log(`${sum} invalid`);
     return false;
   }
 }
 
-validateCredd(invalid1);
+// validateCredd(invalid2);
+
+// function for finding invalid cards and returns a new array with ivalid cards in it
+function findInvalidCards(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    validateCredd(arr[i]);
+    console.log(arr[i]);
+  }
+}
+findInvalidCards(batch);
