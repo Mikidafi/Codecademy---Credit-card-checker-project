@@ -42,55 +42,42 @@ const batch = [
 
 // Add your functions below:
 
-// Func using Luhn algorithm to return true or false
-let reversedArr = [];
-const validateCred = (arr) => {
-  // new reversed array
+// function for iterating from the right to the left
+
+function rightLeft(arr) {
+  let reversedArray = [];
   for (let i = arr.length - 1; i >= 0; i--) {
-    reversedArr.push(arr[i]);
+    reversedArray.push(arr[i]);
   }
-  let oddDigits = reversedArr.filter((element, index) => {
-    return index % 2 === 0;
-  });
-
-  // new array with every other element from reversed array
-  let doubleDigits = reversedArr.filter((element, index) => {
-    return index % 2 !== 0;
-  });
-  // new array with doubled numbers
-  let doubled = [];
-  for (let i = 0; i < doubleDigits.length; i++) {
-    doubled.push(doubleDigits[i] * 2);
+  return reversedArray;
+}
+// function for targeting every other element in array
+function everyOther(arr) {
+  arr = rightLeft(arr);
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 2 != 0) {
+      arr[i] = arr[i] * 2;
+      if (arr[i] > 9) {
+        arr[i] = arr[i] - 9;
+      }
+    }
   }
-  //
-  let lessThan9Nums = doubled.filter((element) => {
-    return element < 9;
-  });
-  let over9Nums = doubled.filter((element) => {
-    return element > 9;
-  });
-  // substracting 9 if value is greater than 9
-  over9Nums = over9Nums.map((element) => {
-    return element - 9;
-  });
+  return arr;
+}
 
-  let substractedNums = lessThan9Nums.concat(over9Nums);
-  // finaly adding both arrays together
-  let secToLastArr = oddDigits.concat(substractedNums);
-  console.log(secToLastArr);
-  // finding total number of an array
-  let allTogether = secToLastArr.reduce((a, b) => {
+// function that return true for valid card and false for invalid card
+function validateCredd(arr) {
+  arr = everyOther(arr);
+  let sum = arr.reduce((a, b) => {
     return a + b;
   });
-  console.log(allTogether);
-  // checking if sum modulo 10 is 0
-  if (allTogether % 10 === 0) {
-    console.log("Valid");
+  if (sum % 10 === 0) {
+    console.log(`${sum} true`);
     return true;
   } else {
-    console.log("Invalid");
+    console.log(`${sum} false`);
     return false;
   }
-};
+}
 
-validateCred(mystery4);
+validateCredd(invalid1);
