@@ -20,6 +20,7 @@ const mystery2 = [5, 4, 6, 6, 1, 0, 0, 8, 6, 1, 6, 2, 0, 2, 3, 9];
 const mystery3 = [6, 0, 1, 1, 3, 7, 7, 0, 2, 0, 9, 6, 2, 6, 5, 6, 2, 0, 3];
 const mystery4 = [4, 9, 2, 9, 8, 7, 7, 1, 6, 9, 2, 1, 7, 0, 9, 3];
 const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3];
+const myTestCard = [1, 3, 4, 5, 3, 7, 8, 9, 0];
 
 // An array of all the arrays above
 const batch = [
@@ -38,6 +39,7 @@ const batch = [
   mystery3,
   mystery4,
   mystery5,
+  myTestCard,
 ];
 
 // Add your functions below:
@@ -92,8 +94,33 @@ function findInvalidCards(arr) {
       invalidCards.push(arr[i]);
     }
   }
-  console.log(invalidCards);
+  // console.log(invalidCards);
   return invalidCards;
 }
 
 findInvalidCards(batch);
+
+// function that adds name of a company invalid card belongs to
+// if there is no such company, return "unknown"
+
+let newArr = [];
+function invalidCardCompanies(arr) {
+  for (let i = 0; i < invalidCards.length; i++) {
+    if (invalidCards[i][0] === 3) {
+      newArr.push("Amex");
+    } else if (invalidCards[i][0] === 4) {
+      newArr.push("Visa");
+    } else if (invalidCards[i][0] === 5) {
+      newArr.push("Mastercard");
+    } else if (invalidCards[i][0] === 6) {
+      newArr.push("Discover");
+    } else {
+      newArr.push("Unknown card");
+    }
+  }
+
+  return (newArr = [...new Set(newArr)]); // will return new array without duplicates
+}
+
+invalidCardCompanies(invalidCards);
+console.log(newArr);
